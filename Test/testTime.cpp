@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
     time(&timehientai);
     
     timer_settime = gmtime(&timehientai);
-    printf("Thoi gian hien tai: %s",timer_settime->tm_isdst);
+    printf("Thoi gian hien tai: %d",timer_settime->tm_isdst);
 
 
 
