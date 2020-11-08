@@ -4,18 +4,18 @@
 #include <time.h>
 #include <string.h>
 #include "FullMacro.h"
-struct tuioxyz //bao gom Time: t, ID User: U, ID: i, toa do: oxyz
+#include <vector>
+typedef struct tuioxyz //bao gom Time: t, ID User: U, ID: i, toa do: oxyz
 {
     time_t t;
     double user;
     long double Id;
-    Oxyz oxyz;
-    
-    
+    Oxyz oxyz;        
 };
-struct Oxyz
+typedef struct Oxyz
 {
     double x;
     double y;
     double z;
 };
+_Vector_impl 
