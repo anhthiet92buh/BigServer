@@ -5,13 +5,16 @@
 #include <stdio.h>
 using namespace std;
 
-void NamNhuan(int nam){
-
-
-
-
+int TimNamNhuan(int nam){
+  if ((nam%4==0)&&(nam%100!=0)||(nam%400==0))
+  {
+    return 1;
+  }else
+  {
+    return 0;
+  };
 };
-void NamKoNhuan(int nam){};
+
 void Nam(int nam){};
 void Thang(int nam){};
 void Ngay(int nam){};
@@ -19,12 +22,28 @@ void Gio(int nam){};
 int LayPhanNguyen(double x){
     return (int)x;
 };
+
+//Cac loai ham in
 void InFullTimeSCN(int Nam, int Thang, int Ngay, int gio, int phut, int s){
     cout<< gio<<":"<<phut<<":"<<s<<"--- Ngay "<<Ngay<<" Thang "<<Thang<<" Nam "<<Nam<<" SCN."<<endl;
 };
 
 void InFullTimeTCN(int Nam, int Thang, int Ngay, int gio, int phut, int s){
     cout<< gio<<":"<<phut<<":"<<s<<"--- Ngay "<<Ngay<<" Thang "<<Thang<<" Nam "<<-Nam<<" TCN."<<endl;
+};
+void InFullThangNamNhuan(int Nam, int Thang, int Ngay, int gio, int phut, int s){
+        if( t>=1 && t<=31)  InFullTimeSCN(d,1,t,gio,phut,giay);
+        if( t>31 && t<=60)  InFullTimeSCN(d,2,t-31,gio,phut,giay);
+        if( t>60 && t<=91)  InFullTimeSCN(d,3,t-60,gio,phut,giay);
+        if( t>91 && t<=121) InFullTimeSCN(d,4,t-91,gio,phut,giay);
+        if( t>121 && t<=152) InFullTimeSCN(d,5,t-121,gio,phut,giay);
+        if( t>152 && t<=182) InFullTimeSCN(d,6,t-152,gio,phut,giay);
+        if( t>182 && t<=213) InFullTimeSCN(d,7,t-182,gio,phut,giay);
+        if( t>213 && t<=244) InFullTimeSCN(d,8,t-213,gio,phut,giay);
+        if( t>244 && t<=274) InFullTimeSCN(d,9,t-244,gio,phut,giay);
+        if( t>274 && t<=305) InFullTimeSCN(d,10,t-274,gio,phut,giay);
+        if( t>305 && t<=335) InFullTimeSCN(d,11,t-305,gio,phut,giay);
+        if( t>335 && t<=366) InFullTimeSCN(d,12,t-335,gio,phut,giay);
 };
 
 int main ()
@@ -64,10 +83,37 @@ int main ()
     phut = (GIO - gio)*60 ;
     giay = (PHUT - phut) * 60 ;
 
+    if (d>1900)
+    {
+      if (TimNamNhuan(d))
+      {
+        if( t>=1 && t<=31)  InFullTimeSCN(d,1,t,gio,phut,giay);
+        if( t>31 && t<=60)  InFullTimeSCN(d,2,t-31,gio,phut,giay);
+        if( t>60 && t<=91)  InFullTimeSCN(d,3,t-60,gio,phut,giay);
+        if( t>91 && t<=121) InFullTimeSCN(d,4,t-91,gio,phut,giay);
+        if( t>121 && t<=152) InFullTimeSCN(d,5,t-121,gio,phut,giay);
+        if( t>152 && t<=182) InFullTimeSCN(d,6,t-152,gio,phut,giay);
+        if( t>182 && t<=213) InFullTimeSCN(d,7,t-182,gio,phut,giay);
+        if( t>213 && t<=244) InFullTimeSCN(d,8,t-213,gio,phut,giay);
+        if( t>244 && t<=274) InFullTimeSCN(d,9,t-244,gio,phut,giay);
+        if( t>274 && t<=305) InFullTimeSCN(d,10,t-274,gio,phut,giay);
+        if( t>305 && t<=335) InFullTimeSCN(d,11,t-305,gio,phut,giay);
+        if( t>335 && t<=366) InFullTimeSCN(d,12,t-335,gio,phut,giay);
+      }else
+      {
+        
+      };
+      
+      
+    }
+    
+   
+    
 
+  /*
    // tim nam nhuan va nam ko nhuan
    cout<<"CT dang vao vong so sanh d"<<endl;
-    if(d>=0)
+    if(d>0)
     {
       if ((d % 4 == 0) && (d % 100 !=0) || (d % 400 == 0))
       {
@@ -141,6 +187,6 @@ int main ()
       
         
     }
-    
+    */
     return 0;
 }
