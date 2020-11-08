@@ -18,4 +18,3 @@ typedef struct Oxyz
     double y;
     double z;
 };
-_Vector_impl 
