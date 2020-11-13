@@ -5,16 +5,15 @@
 #include <string.h>
 #include "FullMacro.h"
 #include <vector>
-typedef struct tuioxyz //bao gom Time: t, ID User: U, ID: i, toa do: oxyz
-{
+//bao gom Time: t, ID User: U, ID: i, toa do: oxyz
+typedef struct{
     time_t t;
-    double user;
-    long double Id;
-    Oxyz oxyz;        
-};
-typedef struct Oxyz
-{
-    double x;
-    double y;
-    double z;
-};
+    double user=123;
+    long double Id=123456789;
+    Oxyz oxyz;       
+}Tuioxyz;
+typedef struct{
+    double x=1;
+    double y=2;
+    double z=3;
+}Oxyz;
