@@ -9,6 +9,8 @@
     - Lay ngay lam chuan de quy doi ra don vi thoi gian khac
     - Don vi nho nhat la Giay, Lon nhat la Nam
 
+    - Luu y: Su dung chu ky 4 nam 1461 Ngay de tim ra thoi gian
+
 */
 #include <iostream>
 #include <ctime>
@@ -30,7 +32,6 @@ namespace vn{
     };
 
     vntime ngay_goc_vn(vntime *pt, int a){
-            cout<<"00h00'00'' - Ngay 01 Thang 01 Nam 2000"<<endl;
             pt->sec_vn = 0;
             pt->min_vn = 0;
             pt->hour_vn = 0;
@@ -42,7 +43,11 @@ namespace vn{
             return *pt;
     };
 };
+// In Ngay thang nam Gio phut Giay
+void InTime(vn::vntime *pt){
 
+    cout<<"Ngay "<<pt->mday_vn<<" Thang "<<pt->mon_vn<<" Nam "<<pt->year_vn<<": "<<pt->hour_vn<<": "<<pt->min_vn<<"'"<<": "<<pt->sec_vn<<"''"<<endl;
+};
 
 using namespace std;
 using namespace vn;
@@ -51,27 +56,46 @@ int main(int argc, char const *argv[])
 {
     vntime *pt, t;
     pt = &t;
-
-
-
-
+    //--------------------------------
     int a;  
     cin >> a;   // Nhap vao so ngay
-
-
-
+    //---------------------------------
+    //Xu ly du lieu
 
     if (a==0)
     {
         ngay_goc_vn(pt,a);
+        InTime(pt);
     }else
     {
-        if (/* condition */)
+
+        double  *SLCK4N, SoLanChuky4Nam   = a/1461; // Lay chu ky 4 nam de tinh toan tim ra Time
+        int *slck4n, solanchuky4nam      = int(SoLanChuky4Nam+0.0000001);   //
+
+
+
+
+        if (a>0)
         {
-            /* code */
-        }
-        
-    }
+            /* Truong hop a>0 */
+
+
+
+
+
+
+
+
+
+        }else if (a<0)
+        {
+            /* Truong hop a<0 */
+        }else
+        {
+            /* Cac truong hop a khac */
+        };
+                
+    };
     
     
     

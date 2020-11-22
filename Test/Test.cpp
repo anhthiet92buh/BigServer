@@ -34,7 +34,6 @@ int main(int argc, char *argv[])
     //bitst[2]=2314866;
     //bitst[3]=2.569;
     bitst = "k";
-    bitst.
 
     cout << bitst[0] <<endl;
 
