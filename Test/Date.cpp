@@ -73,9 +73,18 @@ int main(int argc, char const *argv[])
         int *slck4n, solanchuky4nam      = int(a/1461); // Lay chu ky 4 nam de tinh toan tim ra Time
         cout<<"Solanchu ky 4 nam: "<<solanchuky4nam<<" - sizeo int: "<<sizeof(int)<<endl;
         slck4n=&solanchuky4nam;
-        int ngayMoc = *slck4n*1461;
-        int ngaytrongchuky = int(a-*slck4n*1461+1);
-        cout<<"So ngay trong chu ky: "<<ngaytrongchuky<<endl;
+
+        int *day_Moc,ngayMoc = int(*slck4n*1461);
+        day_Moc=&ngayMoc;
+        cout<<"Ngay Moc: "<<*day_Moc<<endl;
+
+        int *year_Moc, namMoc = int(2000+*slck4n*4);
+        year_Moc = &namMoc;
+        cout<<"Nam Moc: "<<*year_Moc<<endl;
+
+        int *day_chuky, ngaytrongchuky = int(a-*day_Moc+1);
+        day_chuky = &ngaytrongchuky;
+        cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
         
 
 
