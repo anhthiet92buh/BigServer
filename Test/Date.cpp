@@ -17,7 +17,7 @@
 
 // namespace nguoi Viet Nam
 namespace vn{
-
+    double deltaX = 0.000001;   //Sai so tieu chuan
     // Kieu cau truc Time cua nguoi Viet Nam
     struct vntime
     {
@@ -46,7 +46,7 @@ namespace vn{
 // In Ngay thang nam Gio phut Giay
 void InTime(vn::vntime *pt){
 
-    cout<<"Ngay "<<pt->mday_vn<<" Thang "<<pt->mon_vn<<" Nam "<<pt->year_vn<<": "<<pt->hour_vn<<": "<<pt->min_vn<<"'"<<": "<<pt->sec_vn<<"''"<<endl;
+    std::cout<<"Ngay "<<pt->mday_vn<<" Thang "<<pt->mon_vn<<" Nam "<<pt->year_vn<<": "<<pt->hour_vn<<": "<<pt->min_vn<<"'"<<": "<<pt->sec_vn<<"''"<<std::endl;
 };
 
 using namespace std;
@@ -69,9 +69,14 @@ int main(int argc, char const *argv[])
     }else
     {
 
-        double  *SLCK4N, SoLanChuky4Nam   = a/1461; // Lay chu ky 4 nam de tinh toan tim ra Time
-        int *slck4n, solanchuky4nam      = int(SoLanChuky4Nam+0.000001);   //
-        cout<<"Solanchu ky 4 nam: "<<solanchuky4nam<<endl;
+        //double  *SLCK4N, SoLanChuky4Nam   = a/1461; // Lay chu ky 4 nam de tinh toan tim ra Time
+        int *slck4n, solanchuky4nam      = int(a/1461); // Lay chu ky 4 nam de tinh toan tim ra Time
+        cout<<"Solanchu ky 4 nam: "<<solanchuky4nam<<" - sizeo int: "<<sizeof(int)<<endl;
+        slck4n=&solanchuky4nam;
+        int ngayMoc = *slck4n*1461;
+        int ngaytrongchuky = int(a-*slck4n*1461+1);
+        cout<<"So ngay trong chu ky: "<<ngaytrongchuky<<endl;
+        
 
 
 
