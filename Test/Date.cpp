@@ -70,7 +70,8 @@ int main(int argc, char const *argv[])
     {
 
         double  *SLCK4N, SoLanChuky4Nam   = a/1461; // Lay chu ky 4 nam de tinh toan tim ra Time
-        int *slck4n, solanchuky4nam      = int(SoLanChuky4Nam+0.0000001);   //
+        int *slck4n, solanchuky4nam      = int(SoLanChuky4Nam+0.000001);   //
+        cout<<"Solanchu ky 4 nam: "<<solanchuky4nam<<endl;
 
 
 
