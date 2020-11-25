@@ -69,22 +69,21 @@ int main(int argc, char const *argv[])
     }else
     {
 
-        //double  *SLCK4N, SoLanChuky4Nam   = a/1461; // Lay chu ky 4 nam de tinh toan tim ra Time
         int *slck4n, solanchuky4nam      = int(a/1461); // Lay chu ky 4 nam de tinh toan tim ra Time
         cout<<"Solanchu ky 4 nam: "<<solanchuky4nam<<" - sizeo int: "<<sizeof(int)<<endl;
         slck4n=&solanchuky4nam;
 
-        int *day_Moc,ngayMoc = int(*slck4n*1461);
+        int *day_Moc,ngayMoc;
         day_Moc=&ngayMoc;
-        cout<<"Ngay Moc: "<<*day_Moc<<endl;
+        //cout<<"Ngay Moc: "<<*day_Moc<<endl;
 
-        int *year_Moc, namMoc = int(2000+*slck4n*4);
+        int *year_Moc, namMoc;
         year_Moc = &namMoc;
-        cout<<"Nam Moc: "<<*year_Moc<<endl;
+        //cout<<"Nam Moc: "<<*year_Moc<<endl;
 
-        int *day_chuky, ngaytrongchuky = int(a-*day_Moc+1);
+        int *day_chuky, ngaytrongchuky;
         day_chuky = &ngaytrongchuky;
-        cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
+        //cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
         
 
 
@@ -93,6 +92,15 @@ int main(int argc, char const *argv[])
         if (a>0)
         {
             /* Truong hop a>0 */
+            ngayMoc = int(*slck4n*1461);
+            cout<<"Ngay Moc: "<<*day_Moc<<endl;
+
+            namMoc = int(2000+*slck4n*4);
+            cout<<"Nam Moc: "<<*year_Moc<<endl;
+
+            ngaytrongchuky = int(a-*day_Moc);
+            cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
+
 
 
 
@@ -105,6 +113,14 @@ int main(int argc, char const *argv[])
         }else if (a<0)
         {
             /* Truong hop a<0 */
+            ngayMoc = int(*slck4n*1461-1461);
+            cout<<"Ngay Moc: "<<*day_Moc<<endl;
+
+            namMoc = int(2000+*slck4n*4-4);
+            cout<<"Nam Moc: "<<*year_Moc<<endl;
+
+            ngaytrongchuky = int(a-*day_Moc);
+            cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
         }else
         {
             /* Cac truong hop a khac */
