@@ -31,13 +31,13 @@ namespace vn{
         int yday_vn;    // Ngay trong nam tu 0 den 366, mac dinh la 0
     };
 
-    vntime ngay_goc_vn(vntime *pt, int a){
+    vntime ngay_goc_vn(vntime *pt, int a, int b){
             pt->sec_vn = 0;
             pt->min_vn = 0;
             pt->hour_vn = 0;
             pt->mday_vn = 1;
             pt->mon_vn = 1;
-            pt->year_vn = 2000;
+            pt->year_vn = b;
             pt->wday_vn = 7;
             pt->yday_vn = 1;
             return *pt;
@@ -57,14 +57,17 @@ int main(int argc, char const *argv[])
     vntime *pt, t;
     pt = &t;
     //--------------------------------
-    int a;  
+    int a,b=2000;  
     cin >> a;   // Nhap vao so ngay
+    //cin >> b;   // Nhap vào năm gốc
+
+
     //---------------------------------
     //Xu ly du lieu
 
     if (a==0)
     {
-        ngay_goc_vn(pt,a);
+        ngay_goc_vn(pt,a,b);
         InTime(pt);
     }else
     {
@@ -95,7 +98,7 @@ int main(int argc, char const *argv[])
             ngayMoc = int(*slck4n*1461);
             cout<<"Ngay Moc: "<<*day_Moc<<endl;
 
-            namMoc = int(2000+*slck4n*4);
+            namMoc = int(b+*slck4n*4-4);
             cout<<"Nam Moc: "<<*year_Moc<<endl;
 
             ngaytrongchuky = int(a-*day_Moc);
@@ -116,7 +119,7 @@ int main(int argc, char const *argv[])
             ngayMoc = int(*slck4n*1461-1461);
             cout<<"Ngay Moc: "<<*day_Moc<<endl;
 
-            namMoc = int(2000+*slck4n*4-4);
+            namMoc = int(b+*slck4n*4-4);
             cout<<"Nam Moc: "<<*year_Moc<<endl;
 
             ngaytrongchuky = int(a-*day_Moc);
@@ -125,6 +128,7 @@ int main(int argc, char const *argv[])
         {
             /* Cac truong hop a khac */
         };
+
                 
     };
     
