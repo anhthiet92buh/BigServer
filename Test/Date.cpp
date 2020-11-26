@@ -11,6 +11,7 @@
 
     - Luu y: Su dung chu ky 4 nam 1461 Ngay de tim ra thoi gian
 
+
 */
 #include <iostream>
 #include <ctime>
@@ -43,10 +44,12 @@ namespace vn{
             return *pt;
     };
 };
+
+
 // In Ngay thang nam Gio phut Giay
 void InTime(vn::vntime *pt){
 
-    std::cout<<"Ngay "<<pt->mday_vn<<" Thang "<<pt->mon_vn<<" Nam "<<pt->year_vn<<": "<<pt->hour_vn<<": "<<pt->min_vn<<"'"<<": "<<pt->sec_vn<<"''"<<std::endl;
+    std::cout<<"Thu "<<pt->wday_vn<<" Ngay "<<pt->mday_vn<<" Thang "<<pt->mon_vn<<" Nam "<<pt->year_vn<<": "<<pt->hour_vn<<": "<<pt->min_vn<<"'"<<": "<<pt->sec_vn<<"''"<<std::endl;
 };
 
 using namespace std;
@@ -88,7 +91,10 @@ int main(int argc, char const *argv[])
         day_chuky = &ngaytrongchuky;
         //cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
         
-
+        int *week_day, dayofweek;
+        week_day = &dayofweek;
+        dayofweek = a%7;
+        cout<<"Ngay trong Tuan: "<<*week_day<<endl;
 
 
 
@@ -111,6 +117,8 @@ int main(int argc, char const *argv[])
 
             ngaytrongchuky = int(a-*day_Moc);
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
+
+            
 
 
 
