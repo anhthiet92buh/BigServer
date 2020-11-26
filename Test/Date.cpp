@@ -98,7 +98,15 @@ int main(int argc, char const *argv[])
             ngayMoc = int(*slck4n*1461);
             cout<<"Ngay Moc: "<<*day_Moc<<endl;
 
-            namMoc = int(b+*slck4n*4-4);
+            if (a<=1461)
+            {
+                namMoc = b;
+            }else
+            {
+                namMoc = int(b+*slck4n*4);
+            }
+            
+            
             cout<<"Nam Moc: "<<*year_Moc<<endl;
 
             ngaytrongchuky = int(a-*day_Moc);
@@ -126,7 +134,7 @@ int main(int argc, char const *argv[])
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
         }else
         {
-            /* Cac truong hop a khac */
+            cout<<"Chương Trình Bị Lỗi"<<endl;
         };
 
                 
