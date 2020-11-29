@@ -1,17 +1,21 @@
 /* Day la chuong trinh dinh ngia lai thoi gian theo tieu chuan rieng cua nguoi Viet Nam phat trien dua tren tieu chuan c++ 2020:
     - Version 1.0
+
     - Goc thoi gian la: 01/01/2000
     - Moc thoi gian 0 la thoi diem dau tien cua ngay 01/01/2000
     - Gia tri 1 chinh la ngay 01/01/2000
     - Neu he thong ko co dong ho se tra ve gia tri 0
+
     - Lay ngay lam chuan de quy doi ra don vi thoi gian khac
     - Don vi nho nhat la Giay, Lon nhat la Nam
+
     - Luu y: Su dung chu ky 4 nam 1461 Ngay de tim ra thoi gian
+
+
 */
 #include <iostream>
 #include <ctime>
-#include <fstream>
-#include <unistd.h>
+
 // namespace nguoi Viet Nam
 namespace vn{
     double deltaX = 0.000001;   //Sai so tieu chuan
@@ -57,26 +61,9 @@ int main(int argc, char const *argv[])
     pt = &t;
     //--------------------------------
     int a,b=2000;  
-    //cin >> a;   // Nhap vao so ngay
+    cin >> a;   // Nhap vao so ngay
     //cin >> b;   // Nhap vào năm gốc
-    //------------------------------------
-    ofstream fngaymoc, fthang, fnammoc, fsongaytrongchuky, fngaytrongtuan, fsolanchuky, ffull, fa;
-    fa.open("a.txt",ios::out);
-    ffull.open("Full.txt",ios::out);
-    fngaymoc.open("ngaymoc.txt",ios::out);
-    fthang.open("thang.txt",ios::out);
-    fnammoc.open("nammoc.txt",ios::out);
-    fsongaytrongchuky.open("songaytrongchuky.txt",ios::out);
-    fngaytrongtuan.open("ngaytrongtuan.txt",ios::out);
 
-    
-
-    for (size_t i = 1; i <= 366; i++)
-    {
-        a=i;
-        if(i<6) sleep(5);
-    
-    
 
     //---------------------------------
     //Xu ly du lieu
@@ -131,12 +118,6 @@ int main(int argc, char const *argv[])
             ngaytrongchuky = int(a-*day_Moc);
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
 
-            // fngaymoc<<*day_Moc<<endl;
-            // fnammoc<<*year_Moc<<endl;
-            // fsongaytrongchuky<<*day_chuky<<endl;
-            // fngaytrongtuan<<*week_day<<endl;
-            ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<endl;
-
             
 
 
@@ -166,19 +147,15 @@ int main(int argc, char const *argv[])
 
                 
     };
-
-
-
-
     
-    };
     
-    ffull.close();
-    fngaymoc.close();
-    fthang.close();
-    fnammoc.close();
-    fsongaytrongchuky.close();
-    fngaytrongtuan.close();
+    
+
+
+
+
+
+
 
 
 
