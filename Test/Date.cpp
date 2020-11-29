@@ -12,6 +12,7 @@
 #include <ctime>
 #include <fstream>
 #include <unistd.h>
+#include <string>
 // namespace nguoi Viet Nam
 namespace vn{
     double deltaX = 0.000001;   //Sai so tieu chuan
@@ -38,6 +39,25 @@ namespace vn{
             pt->wday_vn = 7;
             pt->yday_vn = 1;
             return *pt;
+    };
+    string ThuTrongTuan_Duong(int *x){
+        switch (*x)
+        {
+        case 0:{
+            return "Thu 6";
+            break;
+        }
+        case 1: {
+            return "Thu 7";
+            break;
+        }
+        default:
+            break;
+        }
+
+
+
+
     };
 };
 
@@ -73,6 +93,11 @@ int main(int argc, char const *argv[])
 
     for (size_t i = 1; i <= 366; i++)
     {
+        if (i==1)
+        {
+            ffull<<"So Ngay a"<<" "<<"Ngay Moc"<<" "<<"Nam Moc"<<" "<<"Ngay trong chu ky"<<" "<<"Thu trong tuan"<<endl;
+        };
+        
         a=i;
         if(i<6) sleep(5);
     
@@ -120,6 +145,7 @@ int main(int argc, char const *argv[])
             if (a<=1461)
             {
                 namMoc = b;
+                
             }else
             {
                 namMoc = int(b+*slck4n*4);
