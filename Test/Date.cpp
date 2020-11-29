@@ -40,15 +40,15 @@ namespace vn{
             pt->yday_vn = 1;
             return *pt;
     };
-    string ThuTrongTuan_Duong(int *x){
+    void ThuTrongTuan_Duong(int *x){
         switch (*x)
         {
         case 0:{
-            return "Thu 6";
+            //return "Thu 6";
             break;
         }
         case 1: {
-            return "Thu 7";
+            //return "Thu 7";
             break;
         }
         default:
@@ -95,11 +95,11 @@ int main(int argc, char const *argv[])
     {
         if (i==1)
         {
-            ffull<<"So Ngay a"<<" "<<"Ngay Moc"<<" "<<"Nam Moc"<<" "<<"Ngay trong chu ky"<<" "<<"Thu trong tuan"<<endl;
+            ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
         a=i;
-        if(i<6) sleep(5);
+        if(i<6) sleep(2);
     
     
 
