@@ -40,24 +40,67 @@ namespace vn{
             pt->yday_vn = 1;
             return *pt;
     };
-    void ThuTrongTuan_Duong(int *x){
+    const char *ThuTrongTuan_Duong(int *x){
         switch (*x)
         {
         case 0:{
-            //return "Thu 6";
+            return "Thu 6";
             break;
         }
         case 1: {
-            //return "Thu 7";
+            return "Thu 7";
+            break;
+        }case 2: {
+            return "Chu Nhat";
+            break;
+        }case 3: {
+            return "Thu 2";
+            break;
+        }case 4: {
+            return "Thu 3";
+            break;
+        }case 5: {
+            return "Thu 4";
+            break;
+        }case 6: {
+            return "Thu 5";
             break;
         }
         default:
+            return "Fail Duong";
             break;
         }
-
-
-
-
+    };
+    const char *ThuTrongTuan_Am(int *x){
+        switch (*x)
+        {
+        case 0:{
+            return "Thu 7";
+            break;
+        }
+        case -1: {
+            return "Thu 6";
+            break;
+        }case -2: {
+            return "Thu 5";
+            break;
+        }case -3: {
+            return "Thu 4";
+            break;
+        }case -4: {
+            return "Thu 3";
+            break;
+        }case -5: {
+            return "Thu 2";
+            break;
+        }case -6: {
+            return "Chu Nhat";
+            break;
+        }
+        default:
+            return "Fail Am";
+            break;
+        }
     };
 };
 
@@ -91,14 +134,14 @@ int main(int argc, char const *argv[])
 
     
 
-    for (size_t i = 1; i <= 366; i++)
+    for (int i = -200; i <= 200; i++)
     {
-        if (i==1)
+        if (i==-200)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
-        a=i;
+        a=-i;
         if(i<6) sleep(2);
     
     
@@ -161,7 +204,7 @@ int main(int argc, char const *argv[])
             // fnammoc<<*year_Moc<<endl;
             // fsongaytrongchuky<<*day_chuky<<endl;
             // fngaytrongtuan<<*week_day<<endl;
-            ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<endl;
+            ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Duong(week_day)<<endl;
 
             
 
@@ -185,6 +228,10 @@ int main(int argc, char const *argv[])
 
             ngaytrongchuky = int(a-*day_Moc);
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
+            ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Am(week_day)<<endl;
+
+
+
         }else
         {
             cout<<"Chương Trình Bị Lỗi"<<endl;
