@@ -102,6 +102,16 @@ namespace vn{
             break;
         }
     };
+    vntime chuyen_doi_ra_ngay(vntime *pt, int ngaytrongchuky){
+
+
+
+
+        
+    };
+
+
+
 };
 
 
