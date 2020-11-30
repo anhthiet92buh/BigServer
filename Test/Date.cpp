@@ -123,25 +123,19 @@ int main(int argc, char const *argv[])
     //cin >> a;   // Nhap vao so ngay
     //cin >> b;   // Nhap vào năm gốc
     //------------------------------------
-    ofstream fngaymoc, fthang, fnammoc, fsongaytrongchuky, fngaytrongtuan, fsolanchuky, ffull, fa;
-    fa.open("a.txt",ios::out);
+    ofstream ffull;
     ffull.open("Full.txt",ios::out);
-    fngaymoc.open("ngaymoc.txt",ios::out);
-    fthang.open("thang.txt",ios::out);
-    fnammoc.open("nammoc.txt",ios::out);
-    fsongaytrongchuky.open("songaytrongchuky.txt",ios::out);
-    fngaytrongtuan.open("ngaytrongtuan.txt",ios::out);
 
     
 
-    for (int i = -200; i <= 200; i++)
+    for (int i = 1; i <= 1500; i++)
     {
-        if (i==-200)
+        if (i==1)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
-        a=-i;
+        a=i;
         if(i<6) sleep(2);
     
     
@@ -200,10 +194,6 @@ int main(int argc, char const *argv[])
             ngaytrongchuky = int(a-*day_Moc);
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
 
-            // fngaymoc<<*day_Moc<<endl;
-            // fnammoc<<*year_Moc<<endl;
-            // fsongaytrongchuky<<*day_chuky<<endl;
-            // fngaytrongtuan<<*week_day<<endl;
             ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Duong(week_day)<<endl;
 
             
@@ -247,14 +237,6 @@ int main(int argc, char const *argv[])
     };
     
     ffull.close();
-    fngaymoc.close();
-    fthang.close();
-    fnammoc.close();
-    fsongaytrongchuky.close();
-    fngaytrongtuan.close();
-
-
-
 
     return 0;
 }
