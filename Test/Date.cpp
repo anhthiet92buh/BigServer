@@ -102,13 +102,13 @@ namespace vn{
             break;
         }
     };
-    vntime chuyen_doi_ra_ngay(vntime *pt, int ngaytrongchuky){
+    /*vntime chuyen_doi_ra_ngay(vntime *pt, int ngaytrongchuky){
 
 
 
 
-        
-    };
+
+    };*/
 
 
 
@@ -138,15 +138,16 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = 1; i <= 1500; i++)
+    for (int i = 1300; i <= 3000; i++)
     {
-        if (i==1)
+        if (i==1300)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
         a=i;
-        if(i<6) sleep(2);
+        cout<<"a = "<<a<<endl;
+        if(i<1306) sleep(2);
     
     
 
@@ -186,22 +187,26 @@ int main(int argc, char const *argv[])
         if (a>0)
         {
             /* Truong hop a>0 */
-            ngayMoc = int(*slck4n*1461);
+            
             cout<<"Ngay Moc: "<<*day_Moc<<endl;
 
             if (a<=1461)
             {
-                namMoc = b;
+                *year_Moc = b;
+                *day_Moc=0;
                 
             }else
             {
-                namMoc = int(b+*slck4n*4);
+                *year_Moc = int(b+*slck4n*4);
+                *day_Moc = int(*slck4n*1461);
             }
             
             
             cout<<"Nam Moc: "<<*year_Moc<<endl;
 
             ngaytrongchuky = int(a-*day_Moc);
+                        
+            
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
 
             ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Duong(week_day)<<endl;
