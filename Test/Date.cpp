@@ -138,16 +138,16 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = 1; i <= 5*1461+6; i++)
+    for (int i = -1; i >= -5*1461+6; i--)
     {
-        if (i==1)
+        if (i==-1)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
         a=i;
         cout<<"a = "<<a<<endl;
-        if(i<5) sleep(1);
+        if(i>-5) sleep(1);
     
     
 
