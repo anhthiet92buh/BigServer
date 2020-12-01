@@ -187,26 +187,25 @@ int main(int argc, char const *argv[])
         if (a>0)
         {
             /* Truong hop a>0 */
-            
+            *day_Moc = int(*slck4n*1461);
             cout<<"Ngay Moc: "<<*day_Moc<<endl;
-
-            if (a<=1461)
+            
+            if (a==*day_Moc)
             {
-                *year_Moc = b;
-                *day_Moc=0;
-                
+                *year_Moc = int(b+*slck4n*4-4);
+                *day_Moc=*day_Moc-1461;
             }else
             {
                 *year_Moc = int(b+*slck4n*4);
-                *day_Moc = int(*slck4n*1461);
-            }
+            };
             
             
+            
+            //*year_Moc = int(b+*slck4n*4);
             cout<<"Nam Moc: "<<*year_Moc<<endl;
+            
 
             ngaytrongchuky = int(a-*day_Moc);
-                        
-            
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
 
             ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Duong(week_day)<<endl;
