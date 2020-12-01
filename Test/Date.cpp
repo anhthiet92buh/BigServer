@@ -138,16 +138,16 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = 1300; i <= 3000; i++)
+    for (int i = 1; i <= 5*1461+6; i++)
     {
-        if (i==1300)
+        if (i==1)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
         a=i;
         cout<<"a = "<<a<<endl;
-        if(i<1306) sleep(2);
+        if(i<5) sleep(1);
     
     
 
@@ -188,7 +188,7 @@ int main(int argc, char const *argv[])
         {
             /* Truong hop a>0 */
             *day_Moc = int(*slck4n*1461);
-            cout<<"Ngay Moc: "<<*day_Moc<<endl;
+            
             
             if (a==*day_Moc)
             {
@@ -199,7 +199,7 @@ int main(int argc, char const *argv[])
                 *year_Moc = int(b+*slck4n*4);
             };
             
-            
+            cout<<"Ngay Moc: "<<*day_Moc<<endl;
             
             //*year_Moc = int(b+*slck4n*4);
             cout<<"Nam Moc: "<<*year_Moc<<endl;
