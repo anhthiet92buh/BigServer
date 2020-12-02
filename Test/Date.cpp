@@ -19,15 +19,20 @@ namespace vn{
     // Kieu cau truc Time cua nguoi Viet Nam
     struct vntime
     {
-        int sec_vn;     // So giay trong 1 phut tu 0 den 60, mac dinh la 0
-        int min_vn;     // So phut trong 1 gio tu 0 den 60, mac dinh la 0
-        int hour_vn;    // So gio trong 1 ngay tu 0 den 24, mac dinh la 0
-        int mday_vn;    // So ngay trong thang tu 1 den 31, mac dinh la 0
-        int mon_vn;     // Thang trong nam tu 1 den 12, mac dinh la 0
-        int year_vn;    // Nam, Nam bat dau 2000, mac dinh la 2000
-        int wday_vn;    // Ngay trong tuan, bat dau tu thu 2 den cn tuong ung tu 0 den 8, mac dinh la 0
-        int yday_vn;    // Ngay trong nam tu 0 den 366, mac dinh la 0
+        int sec_vn;// So giay trong 1 phut tu 0 den 60, mac dinh la 0
+        int min_vn;// So phut trong 1 gio tu 0 den 60, mac dinh la 0
+        int hour_vn;// So gio trong 1 ngay tu 0 den 24, mac dinh la 0
+        int mday_vn;// So ngay trong thang tu 1 den 31, mac dinh la 0
+        int mon_vn;// Thang trong nam tu 1 den 12, mac dinh la 0
+        int year_vn;// Nam, Nam bat dau 2000, mac dinh la 2000
+        int wday_vn;// Ngay trong tuan, bat dau tu thu 2 den cn tuong ung tu 0 den 8, mac dinh la 0
+        int yday_vn;// Ngay trong nam tu 0 den 366, mac dinh la 0
     };
+    struct RealTime
+    {
+        /* data */
+    };
+    
 
     vntime ngay_goc_vn(vntime *pt, int a, int b){
             pt->sec_vn = 0;
@@ -102,13 +107,72 @@ namespace vn{
             break;
         }
     };
-    /*vntime chuyen_doi_ra_ngay(vntime *pt, int ngaytrongchuky){
+    void chuyen_doi_trong_nam_nhuan(vntime *pt, int *ngaytrongchuky, int *yearMoc, int *weekday){
+        pt->year_vn=*yearMoc;
+        pt->yday_vn=*ngaytrongchuky;
+        pt->wday_vn=*weekday;
 
-
-
-
-
-    };*/
+        if (*ngaytrongchuky<=31)
+        {
+            pt->mday_vn=*ngaytrongchuky;
+            pt->mon_vn = 1;            
+        };
+        if ((*ngaytrongchuky>31)&&(*ngaytrongchuky<=60))
+        {
+            pt->mday_vn=*ngaytrongchuky-31;
+            pt->mon_vn = 2;
+        };
+        if ((*ngaytrongchuky>60)&&(*ngaytrongchuky<=91))
+        {
+            pt->mday_vn=*ngaytrongchuky-60;
+            pt->mon_vn = 3;
+        };
+        if ((*ngaytrongchuky>91)&&(*ngaytrongchuky<=121))
+        {
+            pt->mday_vn=*ngaytrongchuky-91;
+            pt->mon_vn = 4;
+        };
+        if ((*ngaytrongchuky>121)&&(*ngaytrongchuky<=152))
+        {
+            pt->mday_vn=*ngaytrongchuky-121;
+            pt->mon_vn = 5;
+        };
+        if ((*ngaytrongchuky>152)&&(*ngaytrongchuky<=182))
+        {
+            pt->mday_vn=*ngaytrongchuky-152;
+            pt->mon_vn = 6;
+        };
+        if ((*ngaytrongchuky>182)&&(*ngaytrongchuky<=213))
+        {
+            pt->mday_vn=*ngaytrongchuky-182;
+            pt->mon_vn = 7;
+        };
+        if ((*ngaytrongchuky>213)&&(*ngaytrongchuky<=244))
+        {
+            pt->mday_vn=*ngaytrongchuky-213;
+            pt->mon_vn = 8;
+        };
+        if ((*ngaytrongchuky>244)&&(*ngaytrongchuky<=274))
+        {
+            pt->mday_vn=*ngaytrongchuky-244;
+            pt->mon_vn = 9;
+        };
+        if ((*ngaytrongchuky>274)&&(*ngaytrongchuky<=305))
+        {
+            pt->mday_vn=*ngaytrongchuky-244;
+            pt->mon_vn = 10;
+        };
+        if ((*ngaytrongchuky>305)&&(*ngaytrongchuky<=335))
+        {
+            pt->mday_vn=*ngaytrongchuky-244;
+            pt->mon_vn = 11;
+        };
+        if ((*ngaytrongchuky>335)&&(*ngaytrongchuky<=366))
+        {
+            pt->mday_vn=*ngaytrongchuky-244;
+            pt->mon_vn = 12;
+        };
+    };
 
 
 
@@ -138,16 +202,16 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = -5000; i <=5000; i++)
+    for (int i = -5; i <=5; i++)
     {
-        if (i==-5000)
+        if (i==-5)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
         a=i;
         cout<<"a = "<<a<<endl;
-        if(i<-4994) sleep(1);
+        if(i<0) sleep(1);
     
     
 
@@ -177,9 +241,8 @@ int main(int argc, char const *argv[])
         day_chuky = &ngaytrongchuky;
         //cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
         
-        int *week_day, dayofweek;
+        int *week_day, dayofweek=a%7;
         week_day = &dayofweek;
-        dayofweek = a%7;
         cout<<"Ngay trong Tuan: "<<*week_day<<endl;
 
 
@@ -210,7 +273,8 @@ int main(int argc, char const *argv[])
 
             ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Duong(week_day)<<endl;
 
-            
+            chuyen_doi_trong_nam_nhuan(pt,day_chuky,year_Moc,week_day);
+            InTime(pt);
 
 
 
