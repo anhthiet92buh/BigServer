@@ -138,16 +138,16 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = -1; i >= -5*1461+6; i--)
+    for (int i = -5000; i <=5000; i++)
     {
-        if (i==-1)
+        if (i==-5000)
         {
             ffull<<"So_Ngay_a"<<" "<<"Ngay_Moc"<<" "<<"Nam_Moc"<<" "<<"Ngay_trong_chu_ky"<<" "<<"Thu_trong_tuan"<<endl;
         };
         
         a=i;
         cout<<"a = "<<a<<endl;
-        if(i>-5) sleep(1);
+        if(i<-4994) sleep(1);
     
     
 
@@ -227,10 +227,20 @@ int main(int argc, char const *argv[])
             ngayMoc = int(*slck4n*1461-1461);
             cout<<"Ngay Moc: "<<*day_Moc<<endl;
 
-            namMoc = int(b+*slck4n*4-4);
+            
+            if (a-*day_Moc==1461)
+            {
+               *day_Moc=*day_Moc+1461;
+               namMoc = int(b+*slck4n*4);
+            }else
+            {
+                namMoc = int(b+*slck4n*4-4);
+            };
+            
+            //namMoc = int(b+*slck4n*4-4);
             cout<<"Nam Moc: "<<*year_Moc<<endl;
 
-            ngaytrongchuky = int(a-*day_Moc);
+            ngaytrongchuky = int(a-*day_Moc+1);
             cout<<"So ngay trong chu ky: "<<*day_chuky<<endl;
             ffull<<a<<" "<<*day_Moc<<" "<<*year_Moc<<" "<<*day_chuky<<" "<<*week_day<<" "<<ThuTrongTuan_Am(week_day)<<endl;
 
