@@ -13,20 +13,24 @@
 #include <fstream>
 #include <unistd.h>
 #include <string>
+
+
+//ofstream ffull("Full.txt");
+
 // namespace nguoi Viet Nam
 namespace vn{
     double deltaX = 0.000001;   //Sai so tieu chuan
     // Kieu cau truc Time cua nguoi Viet Nam
     struct vntime
     {
-        int sec_vn;// So giay trong 1 phut tu 0 den 60, mac dinh la 0
-        int min_vn;// So phut trong 1 gio tu 0 den 60, mac dinh la 0
-        int hour_vn;// So gio trong 1 ngay tu 0 den 24, mac dinh la 0
-        int mday_vn;// So ngay trong thang tu 1 den 31, mac dinh la 0
-        int mon_vn;// Thang trong nam tu 1 den 12, mac dinh la 0
-        int year_vn;// Nam, Nam bat dau 2000, mac dinh la 2000
-        int wday_vn;// Ngay trong tuan, bat dau tu thu 2 den cn tuong ung tu 0 den 8, mac dinh la 0
-        int yday_vn;// Ngay trong nam tu 0 den 366, mac dinh la 0
+        int sec_vn=0;// So giay trong 1 phut tu 0 den 60, mac dinh la 0
+        int min_vn=0;// So phut trong 1 gio tu 0 den 60, mac dinh la 0
+        int hour_vn=0;// So gio trong 1 ngay tu 0 den 24, mac dinh la 0
+        int mday_vn=0;// So ngay trong thang tu 1 den 31, mac dinh la 0
+        int mon_vn=0;// Thang trong nam tu 1 den 12, mac dinh la 0
+        int year_vn=0;// Nam, Nam bat dau 2000, mac dinh la 2000
+        int wday_vn=0;// Ngay trong tuan, bat dau tu thu 2 den cn tuong ung tu 0 den 8, mac dinh la 0
+        int yday_vn=0;// Ngay trong nam tu 0 den 366, mac dinh la 0
     };
     struct RealTime
     {
@@ -49,26 +53,26 @@ namespace vn{
         switch (*x)
         {
         case 0:{
-            return "Thu 6";
+            return "Thu6";
             break;
         }
         case 1: {
-            return "Thu 7";
+            return "Thu7";
             break;
         }case 2: {
-            return "Chu Nhat";
+            return "CN";
             break;
         }case 3: {
-            return "Thu 2";
+            return "Thu2";
             break;
         }case 4: {
-            return "Thu 3";
+            return "Thu3";
             break;
         }case 5: {
-            return "Thu 4";
+            return "Thu4";
             break;
         }case 6: {
-            return "Thu 5";
+            return "Thu5";
             break;
         }
         default:
@@ -80,26 +84,26 @@ namespace vn{
         switch (*x)
         {
         case 0:{
-            return "Thu 7";
+            return "Thu7";
             break;
         }
         case -1: {
-            return "Thu 6";
+            return "Thu6";
             break;
         }case -2: {
-            return "Thu 5";
+            return "Thu5";
             break;
         }case -3: {
-            return "Thu 4";
+            return "Thu4";
             break;
         }case -4: {
-            return "Thu 3";
+            return "Thu3";
             break;
         }case -5: {
-            return "Thu 2";
+            return "Thu2";
             break;
         }case -6: {
-            return "Chu Nhat";
+            return "CN";
             break;
         }
         default:
@@ -297,7 +301,7 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = -5000; i <=5000; i++)
+    for (int i = -2000; i <=0; i++)
     {
         /*if (i==-5)
         {
@@ -317,6 +321,7 @@ int main(int argc, char const *argv[])
     {
         ngay_goc_vn(pt,a,b);
         InTime(pt,NULL,a);
+        ffull<<a<<" "<<"T"<<pt->wday_vn<<" "<<pt->mday_vn<<" "<<pt->mon_vn<<" "<<pt->year_vn<<" "<<pt->hour_vn<<" "<<pt->min_vn<<" "<<pt->sec_vn<<std::endl;
     }else
     {
 
@@ -377,6 +382,7 @@ int main(int argc, char const *argv[])
 
             TimNgay(pt,year_Moc,week_day,day_chuky);
             InTime(pt,week_day,a);
+            ffull<<a<<" "<<vn::ThuTrongTuan_Duong(week_day)<<" "<<"T"<<pt->wday_vn<<" "<<pt->mday_vn<<" "<<pt->mon_vn<<" "<<pt->year_vn<<" "<<pt->hour_vn<<" "<<pt->min_vn<<" "<<pt->sec_vn<<std::endl;
 
 
 
@@ -405,6 +411,8 @@ int main(int argc, char const *argv[])
 
             TimNgay(pt,year_Moc,week_day,day_chuky);
             InTime(pt,week_day,a);
+            cout<<pt->hour_vn<<"-----------------------------------------------------------------------"<<endl;
+            ffull<<a<<" "<<vn::ThuTrongTuan_Am(week_day)<<" "<<"T"<<pt->wday_vn<<" "<<pt->mday_vn<<" "<<pt->mon_vn<<" "<<pt->year_vn<<" "<<pt->hour_vn<<" "<<pt->min_vn<<" "<<pt->sec_vn<<std::endl;
 
 
         }else
