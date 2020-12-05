@@ -177,7 +177,11 @@ namespace vn{
             pt->mon_vn = 12;
         };
     };
-    void chuyen_doi_trong_nam_thuong(vntime *pt, int *ngaytrongnam, int *yearMoc, int *weekday){
+    void chuyen_doi_trong_nam_thuong(vntime *pt, int *ngaytrongnam, int *yearMoc, int *weekday,int ngaytrongchuky){
+        if((ngaytrongchuky>366)&&(ngaytrongchuky<=))
+        
+        
+        
         pt->year_vn=*yearMoc;
         pt->yday_vn=*ngaytrongnam;
         pt->wday_vn=*weekday;
@@ -301,7 +305,7 @@ int main(int argc, char const *argv[])
 
     
 
-    for (int i = -2000; i <=0; i++)
+    for (int i = -5000; i <=5000; i++)
     {
         /*if (i==-5)
         {
