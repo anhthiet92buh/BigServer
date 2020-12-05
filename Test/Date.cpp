@@ -13,6 +13,7 @@
 #include <fstream>
 #include <unistd.h>
 #include <string>
+#include <vntime>
 
 
 //ofstream ffull("Full.txt");
@@ -177,12 +178,11 @@ namespace vn{
             pt->mon_vn = 12;
         };
     };
-    void chuyen_doi_trong_nam_thuong(vntime *pt, int *ngaytrongnam, int *yearMoc, int *weekday,int ngaytrongchuky){
-        if((ngaytrongchuky>366)&&(ngaytrongchuky<=))
-        
-        
-        
-        pt->year_vn=*yearMoc;
+    void chuyen_doi_trong_nam_thuong(vntime *pt, int *ngaytrongnam, int *yearMoc, int *weekday,int *ngaytrongchuky){
+        if((*ngaytrongchuky>366)&&(*ngaytrongchuky<=731)) pt->year_vn=*yearMoc+1;
+        if((*ngaytrongchuky>731)&&(*ngaytrongchuky<=1096)) pt->year_vn=*yearMoc+2;
+        if((*ngaytrongchuky>1096)&&(*ngaytrongchuky<=1461)) pt->year_vn=*yearMoc+3; 
+        //pt->year_vn=*yearMoc;
         pt->yday_vn=*ngaytrongnam;
         pt->wday_vn=*weekday;
 
@@ -252,15 +252,15 @@ namespace vn{
         if(*ngaytrongchuky<=366) chuyen_doi_trong_nam_nhuan(pt,ngaytrongchuky,yearMoc,weekDay);
         if((*ngaytrongchuky>366)&&(*ngaytrongchuky<=731)) {
             dayofyear=*ngaytrongchuky-366;
-            chuyen_doi_trong_nam_thuong(pt,&dayofyear,yearMoc,weekDay);
+            chuyen_doi_trong_nam_thuong(pt,&dayofyear,yearMoc,weekDay,ngaytrongchuky);
         };
         if((*ngaytrongchuky>731)&&(*ngaytrongchuky<=1096)){
             dayofyear=*ngaytrongchuky-731;
-            chuyen_doi_trong_nam_thuong(pt,&dayofyear,yearMoc,weekDay);
+            chuyen_doi_trong_nam_thuong(pt,&dayofyear,yearMoc,weekDay,ngaytrongchuky);
         };
         if((*ngaytrongchuky>1096)&&(*ngaytrongchuky<=1461)){
             dayofyear=*ngaytrongchuky-1096;
-            chuyen_doi_trong_nam_thuong(pt,&dayofyear,yearMoc,weekDay);
+            chuyen_doi_trong_nam_thuong(pt,&dayofyear,yearMoc,weekDay,ngaytrongchuky);
         };
     };
 
