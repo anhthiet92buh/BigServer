@@ -36,7 +36,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <sys/types.h>
-#include "C:\Program Files\PostgreSQL\12\include\libpq-fe.h"
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+//#include <libpq-fe.h>
 
 /* for ntohl/htonl */
 #include <winsock.h>
