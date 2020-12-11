@@ -1,31 +1,21 @@
-/*
- * src/test/examples/testlibpq.c
- *
- *
- * testlibpq.c
- *
- *		Test the C version of libpq, the PostgreSQL frontend library.
- */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "libpq-fe.h"
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 
-static void
-exit_nicely(PGconn *conn)
+static void exit_nicely(PGconn *conn)
 {
 	PQfinish(conn);
 	exit(1);
 }
-
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	const char *conninfo;
 	PGconn	   *conn;
 	PGresult   *res;
 	int			nFields;
-	int			i,
-				j;
+	int			i,j;
+	printf("Khai bao xong\n");
 
 	/*
 	 * If the user supplies a parameter on the command line, use it as the
@@ -35,7 +25,7 @@ main(int argc, char **argv)
 	if (argc > 1)
 		conninfo = argv[1];
 	else
-		conninfo = "dbname = postgres";
+		conninfo = "dbname = DB1kytu";
 
 	/* Make a connection to the database */
 	conn = PQconnectdb(conninfo);

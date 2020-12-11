@@ -13,9 +13,6 @@
 #include <fstream>
 #include <unistd.h>
 #include <string>
-#include <vntime>
-
-
 //ofstream ffull("Full.txt");
 
 // namespace nguoi Viet Nam

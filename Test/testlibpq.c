@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
         conninfo = argv[1];
     }else
     {
-        conninfo = "dbname = DB1kytu";
+        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu";
     };
 
     conn = PQconnectdb(conninfo);
