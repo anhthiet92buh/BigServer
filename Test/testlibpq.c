@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+#include <postgresql/libpq-fe.h>
 static void exit_nicely(PGconn *conn){
 
     PQfinish(conn);

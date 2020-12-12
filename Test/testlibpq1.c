@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+#include <postgresql/libpq-fe.h>
 
 static void exit_nicely(PGconn *conn)
 {
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	if (argc > 1)
 		conninfo = argv[1];
 	else
-		conninfo = "dbname = DB1kytu";
+		conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu";
 
 	/* Make a connection to the database */
 	conn = PQconnectdb(conninfo);

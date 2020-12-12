@@ -1,4 +1,4 @@
-#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+#include <postgresql/libpq-fe.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,14 +6,14 @@ int main() {
     int lib_ver = PQlibVersion();
     printf("PQlibVersion: %d\n", lib_ver);
 
-    PGconn *conn = PQconnectdb("host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=postgres");
+    PGconn *conn = PQconnectdb("host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu");
     if (PQstatus(conn) == CONNECTION_BAD) {        
         fprintf(stderr, "Can't connect to Postgres: %s\n", PQerrorMessage(conn));
         PQfinish(conn);
         exit(-1);
     }
 
-    PGresult *res = PQexec(conn, "SELECT * FROM student");    
+    PGresult *res = PQexec(conn, "SELECT * FROM motkytu");    
     if (PQresultStatus(res) == PGRES_TUPLES_OK) {
         printf("\n     %-10s %-10s\n", PQfname(res, 0), PQfname(res, 1));
         printf("-------------------------\n");
