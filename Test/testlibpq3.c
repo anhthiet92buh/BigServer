@@ -37,7 +37,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <sys/types.h>
-#include "libpq-fe.h"
+#include <postgresql/libpq-fe.h>
 
 /* for ntohl/htonl */
 #include <netinet/in.h>
