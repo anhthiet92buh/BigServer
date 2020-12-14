@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <postgresql/libpq-fe.h>
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 
 static void exit_nicely(PGconn *conn)
 {
@@ -118,6 +118,8 @@ int main(int argc, char **argv)
 
 	/* close the connection to the database and cleanup */
 	PQfinish(conn);
+
+	system("pause");
 
 	return 0;
 }

@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <postgresql/libpq-fe.h>
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 static void exit_nicely(PGconn *conn){
 
     PQfinish(conn);
-    exit(1);
+    //exit(1);
 };
 
 int main(int argc, char const *argv[])
@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
         conninfo = argv[1];
     }else
     {
-        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu";
+        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=postgres";
     };
 
     printf("Gan dia chi conninfo xong\n");
@@ -97,6 +97,6 @@ int main(int argc, char const *argv[])
 
     PQfinish(conn);
 
-
+    system("pause");
     return 0;
 }

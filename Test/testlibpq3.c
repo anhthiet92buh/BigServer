@@ -29,6 +29,8 @@
  */
 
 #ifdef WIN32
+//#include <winsock.h>
+#include <winsock2.h>
 #include <windows.h>
 #endif
 
@@ -37,17 +39,18 @@
 #include <stdint.h>
 #include <string.h>
 #include <sys/types.h>
-#include <postgresql/libpq-fe.h>
+//#include <postgresql/libpq-fe.h>
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 
 /* for ntohl/htonl */
-#include <netinet/in.h>
-#include <arpa/inet.h>
+//#include <netinet/in.h>
+//#include <arpa/inet.h>
 
 
 static void exit_nicely(PGconn *conn)
 {
     PQfinish(conn);
-    exit(1);
+    //exit(1);
 }
 
 /*
@@ -127,7 +130,7 @@ int main(int argc, char **argv)
     if (argc > 1)
         conninfo = argv[1];
     else
-        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu";
+        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=postgres";
 
     /* Make a connection to the database */
     conn = PQconnectdb(conninfo);
@@ -224,6 +227,8 @@ int main(int argc, char **argv)
 
     /* close the connection to the database and cleanup */
     PQfinish(conn);
+
+    system("pause");
 
     return 0;
 }
