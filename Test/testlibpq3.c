@@ -39,12 +39,12 @@
 #include <stdint.h>
 #include <string.h>
 #include <sys/types.h>
-//#include <postgresql/libpq-fe.h>
-#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+#include <postgresql/libpq-fe.h>
+//#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 
 /* for ntohl/htonl */
-//#include <netinet/in.h>
-//#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 
 static void exit_nicely(PGconn *conn)
