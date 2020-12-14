@@ -15,6 +15,8 @@ int main(int argc, char const *argv[])
     int nFields;
     int i, j;
 
+    printf("Bat dau khai bao xong\n");
+
     if (argc>1)
     {
         conninfo = argv[1];
@@ -23,6 +25,8 @@ int main(int argc, char const *argv[])
         conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu";
     };
 
+    printf("Gan dia chi conninfo xong\n");
+
     conn = PQconnectdb(conninfo);
 
     if (PQstatus(conn)!=CONNECTION_OK)
@@ -30,10 +34,9 @@ int main(int argc, char const *argv[])
         fprintf(stderr,"Connection to database failed: %s",PQerrorMessage(conn));
         exit_nicely(conn);
     };
+    printf("Kiem tra connect xong\n");
 
     res = PQexec(conn, "SELECT pg_catalog.set_config('search_path', '', false)");
-
-    /*
 
     if ( PQresultStatus(res) != PGRES_TUPLES_OK )
     {
@@ -41,6 +44,7 @@ int main(int argc, char const *argv[])
         PQclear(res);
         exit_nicely(conn);
     };
+    printf("SELECT pg_catalog.set_config xong\n");
 
     PQclear(res);
 
@@ -52,6 +56,7 @@ int main(int argc, char const *argv[])
         exit_nicely(conn);
     };
     PQclear(res);
+    printf("Bat dau connect xong \n");
 
     res = PQexec(conn, "DECLARE myportal CURSOR FOR select * from pg_database");
     if (PQresultStatus(res) != PGRES_COMMAND_OK)
@@ -68,7 +73,7 @@ int main(int argc, char const *argv[])
         fprintf(stderr, "FETCH ALL failed: %s", PQerrorMessage(conn));
         PQclear(res);
         exit_nicely(conn);
-    }; */
+    };
 
     nFields = PQnfields(res);
     for (i = 0; i < nFields; i++)
