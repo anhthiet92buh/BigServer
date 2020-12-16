@@ -39,18 +39,18 @@
 #include <stdint.h>
 #include <string.h>
 #include <sys/types.h>
-#include <postgresql/libpq-fe.h>
-//#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+//#include <postgresql/libpq-fe.h>
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 
 /* for ntohl/htonl */
-#include <netinet/in.h>
-#include <arpa/inet.h>
+//#include "netinet/in.h"
+//#include "arpa/inet.h"
 
 
 static void exit_nicely(PGconn *conn)
 {
     PQfinish(conn);
-    //exit(1);
+    exit(1);
 }
 
 /*
@@ -60,12 +60,9 @@ static void exit_nicely(PGconn *conn)
  */
 static void show_binary_results(PGresult *res)
 {
-    int         i,
-                j;
-    int         i_fnum,
-                t_fnum,
-                b_fnum;
-
+    int i,j;
+    int i_fnum,t_fnum,b_fnum;
+    
     /* Use PQfnumber to avoid assumptions about field order in result */
     i_fnum = PQfnumber(res, "i");
     t_fnum = PQfnumber(res, "t");
