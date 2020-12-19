@@ -127,7 +127,7 @@ int main(int argc, char **argv)
     if (argc > 1)
         conninfo = argv[1];
     else
-        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=postgres";
+        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=DB1kytu";
 
     /* Make a connection to the database */
     conn = PQconnectdb(conninfo);
@@ -141,7 +141,7 @@ int main(int argc, char **argv)
     }
 
     /* Set always-secure search path, so malicious users can't take control. */
-    res = PQexec(conn, "SET search_path = testlibpq3");
+    res = PQexec(conn, "SET search_path = motkytu");
     if (PQresultStatus(res) != PGRES_COMMAND_OK)
     {
         fprintf(stderr, "SET failed: %s", PQerrorMessage(conn));
@@ -165,7 +165,7 @@ int main(int argc, char **argv)
     paramValues[0] = "joe's place";
 
     res = PQexecParams(conn,
-                       "SELECT * FROM test1 WHERE t = $1",
+                       "SELECT * FROM motkytu",
                        1,       /* one param */
                        NULL,    /* let the backend deduce param type */
                        paramValues,
@@ -202,14 +202,7 @@ int main(int argc, char **argv)
     paramLengths[0] = sizeof(binaryIntVal);
     paramFormats[0] = 1;        /* binary */
 
-    res = PQexecParams(conn,
-                       "SELECT * FROM test1 WHERE i = $1::int4",
-                       1,       /* one param */
-                       NULL,    /* let the backend deduce param type */
-                       paramValues,
-                       paramLengths,
-                       paramFormats,
-                       1);      /* ask for binary results */
+    res = PQexecParams(conn,"SELECT * FROM motkytu",1,NULL,paramValues,paramLengths,paramFormats,1);      /* ask for binary results */
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK)
     {

@@ -1,6 +1,7 @@
-#include <postgresql/libpq-fe.h>
+//#include <postgresql/libpq-fe.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 
 int main() {
     int lib_ver = PQlibVersion();
@@ -24,5 +25,6 @@ int main() {
     }       
     PQclear(res);
     PQfinish(conn);
+    system("pause");
     return 0;
 }
