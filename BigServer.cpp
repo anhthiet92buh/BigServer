@@ -26,7 +26,6 @@ int main(int argc, char const *argv[])
         point_M.Id=i;
         all_point_vn.push_back(point_M);
         // InFileOxyz(&all_point_vn[i],&oxy);
-        oxy
     };
     oxy.close();
     // f.open("oxyz.vn");
