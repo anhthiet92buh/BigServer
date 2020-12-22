@@ -10,6 +10,6 @@ typedef struct{
 typedef struct{
     time_t t=0;
     double user=123;
-    long double Id=123456789;
+    long double Id;
     Oxyz oxyz;       
 }Tuioxyz;

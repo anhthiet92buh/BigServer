@@ -11,27 +11,31 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
     vector<Tuioxyz> all_point_vn;
-    Tuioxyz point_M, Pteamplate;
-
+    Tuioxyz *pp, *pt, point_M, Pteamplate;
+    pp=&point_M;
+    pt=&Pteamplate;
     int it;
     fstream oxy,f;
-    oxy.open("oxyz.vn");
+    oxy.open("oxyz.vn",ios::app);
     // cout<<"Time: "<<point_M.t<<" IdUser: "<<point_M.user<<" IDValue: "<<point_M.Id<<" Toa do: ("<<point_M.oxyz.x<<","<<point_M.oxyz.y<<","<<point_M.oxyz.z<<")"<<endl;
     // cout<<&point_M<<" - "<<endl;
-    for (size_t i = 0; i < 100; i++)
+    for (size_t i = 0; i < 1000; i++)
     {
-        point_M.Id=i;
-        all_point_vn.push_back(point_M);  
-        InFileOxyz(&point_M,&oxy);      
+        pp->Id=i;
+        cout<<point_M.Id<<endl;
+        all_point_vn.push_back(*pp);  
+        InFileOxyz(pp,&oxy);      
     };
+
+    // InTuioxyz(pp);
 
     oxy.close();
     f.open("oxyz.vn");
     
     while (!f.eof())
     {
-        f.read((char*)&it,sizeof(int));
-        cout<<it<<endl;
+        ReadFileOxyz(pt,&f);
+        InTuioxyz(pt);
     };
     
 
