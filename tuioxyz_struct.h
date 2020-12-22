@@ -2,14 +2,14 @@
 #include <time.h>
 //bao gom Time: t, ID User: U, ID: i, toa do: oxyz
 typedef struct{
-    int64_t x=1;
-    int64_t y=2;
-    int64_t z=3;
+    int64_t x;
+    int64_t y;
+    int64_t z;
 }Oxyz;
 
 typedef struct{
-    time_t t=0;
-    double user=123;
+    time_t t;
+    double user;
     long double Id;
     Oxyz oxyz;       
 }Tuioxyz;
