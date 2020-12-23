@@ -3,11 +3,11 @@
 using namespace std;
 void InFileOxyz(Tuioxyz *t,fstream *oxy){
     // oxy->open("oxyz.vn",ios::app);
-    oxy->write((char*) t,sizeof(t));
+    oxy->write((char*) t,sizeof(Tuioxyz));
     };
 
 void ReadFileOxyz(Tuioxyz *t, fstream *oxy){
-    oxy->read((char*)t,sizeof(t));
+    oxy->read((char*)t,sizeof(Tuioxyz));
 };
 
 void InTuioxyz(Tuioxyz *t){
