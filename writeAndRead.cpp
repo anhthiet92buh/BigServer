@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
     pt=&Pteamplate;
     int it;
     fstream oxy,f;
-    oxy.open("oxyz.vn",ios::app|ios::binary);
+    oxy.open("./FileBackup/oxyz.vn",ios::app|ios::binary);
     // cout<<"Time: "<<point_M.t<<" IdUser: "<<point_M.user<<" IDValue: "<<point_M.Id<<" Toa do: ("<<point_M.oxyz.x<<","<<point_M.oxyz.y<<","<<point_M.oxyz.z<<")"<<endl;
     // cout<<&point_M<<" - "<<endl;
     for (size_t i = 0; i < 100; i++)
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 
     oxy.close();
 
-    f.open("oxyz.vn",ios::in|ios::binary);
+    f.open("./FileBackup/oxyz.vn",ios::in|ios::binary);
     for (size_t i = 0; i < 50; i++)
     {
         f.read((char*)&Pteamplate,sizeof(Tuioxyz));
