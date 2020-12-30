@@ -7,6 +7,12 @@ typedef struct{
     int64_t z=0;
 }Oxyz;
 
+typedef struct user
+{
+    /* data */
+};
+
+
 typedef struct{
     time_t t=0;
     double user=0;
