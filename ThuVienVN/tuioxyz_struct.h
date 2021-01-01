@@ -9,32 +9,30 @@ extern "C"
 #include    <iostream>
 #include    <time.h>
 //bao gom Time: t, ID User: U, ID: i, toa do: oxyz
-typedef struct{
+typedef struct Oxyz{
     int64_t x=0;
     int64_t y=0;
     int64_t z=0;
-}Oxyz;
+};
 
-typedef struct{
+typedef struct Tuioxyz{
     time_t t=0;
     double user=0;
     long double Id=0;
     Oxyz oxyz;       
-}Tuioxyz;
+};
 
-typedef struct
-{
+typedef struct PointVN{
     long double allPoint=0;
     Tuioxyz ValuePoint;
 
-}PointVN;
+};
 
-typedef struct {
+
+typedef struct lens{
     long double len=0;
-    Tuioxyz 
-
-
-}lens;
+    PointVN
+};
 
 #ifdef __cplusplus
 }
