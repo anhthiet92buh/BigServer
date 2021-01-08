@@ -8,6 +8,7 @@ extern "C"
 
 #include    <iostream>
 #include    <time.h>
+#include    <vector>
 //bao gom Time: t, ID User: U, ID: i, toa do: oxyz
 typedef struct Oxyz {
     int64_t x=0;
@@ -37,8 +38,8 @@ typedef struct len  {
 typedef struct lenOfPointVN {
     PointVN PointVN_Goc;
     long double lens[];
+    vector<Oxyz> lensOxyz; 
 };
-
 
 #ifdef __cplusplus
 }
