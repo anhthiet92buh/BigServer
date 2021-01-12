@@ -1,2 +1,8 @@
-test: Test.cpp
-	g++
+a=g++
+
+
+test: testlibpq.c
+	$(a) -Wall testlibpq.c -lpq
+
+cls: 
+	rm -f a*
