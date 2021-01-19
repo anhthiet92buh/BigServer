@@ -27,7 +27,9 @@ int main(int argc, char const *argv[])
     if (connect(sockfd,(struct sockaddr *)&server_addr, sizeof(server_addr)) == 0)
     {
         read(sockfd, recv_buffer,sizeof(recv_buffer)-1);
-        printf("\n%s\n",recv_buffer);        
+        printf("\n%s\n",recv_buffer);
+        read(sockfd, recv_buffer,sizeof(recv_buffer)-1);
+        printf("\n%s\n",recv_buffer);  
         close(sockfd);
     };
     
