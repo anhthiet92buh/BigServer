@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-test: Test.cpp
-	g++ -L "C:\Program Files\PostgreSQL\13\lib" -I "C:\Program Files\PostgreSQL\13\include" testlibpq.c -lpq -o x
-=======
-a=g++
+allTest: testlibpq
 
-
-test: testlibpq.c
-	$(a) -Wall testlibpq.c -lpq
-
-cls: 
-	rm -f a*
->>>>>>> 3707553aa7178af28ada4f2005c8530e0e792841
+testlibpq: testlibpq.c
+	gcc -Wall -Wextra -I "./usr/include/postgresql/" -L "/usr/lib/postgresql/13/lib" testlibpq.c -lpq -o postgresql
+clean:
+	rm -rf *.o *.out postgresql

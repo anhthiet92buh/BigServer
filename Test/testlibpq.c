@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 //#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 #include "/usr/include/postgresql/libpq-fe.h"
 static void exit_nicely(PGconn *conn){
@@ -23,7 +24,7 @@ int main(int argc, char const *argv[])
         conninfo = argv[1];
     }else
     {
-        conninfo = "host=postgres hostaddr=127.0.0.1 port=5432 user=postgres password=11520380 dbname=postgres";
+        conninfo = "host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=11520380 dbname=DB1kytu";
     };
 
     printf("Gan dia chi conninfo xong\n");
@@ -68,7 +69,11 @@ int main(int argc, char const *argv[])
     };
     PQclear(res);
 
-    res = PQexec(conn, "FETCH ALL in myportal");
+    //res = PQexec(conn, "FETCH ALL in myportal");
+    //char t[50]="SELECT "idBigLogic", value, x, y, z FROM public.oxyz1c where "idBigLogic" = 5;";
+    // char *chr;
+    // strcat(chr,
+    res = PQexec(conn, "SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" = 5;");
     if (PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "FETCH ALL failed: %s", PQerrorMessage(conn));
@@ -77,6 +82,7 @@ int main(int argc, char const *argv[])
     };
 
     nFields = PQnfields(res);
+    printf("%d\n",nFields);
     for (i = 0; i < nFields; i++)
         printf("%-15s", PQfname(res, i));
     printf("\n\n");
