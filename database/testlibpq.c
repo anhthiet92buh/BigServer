@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+#ifdef WIN32
+#include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
+#endif
 #include "/usr/include/postgresql/libpq-fe.h"
 static void exit_nicely(PGconn *conn){
 
@@ -107,7 +109,8 @@ int main(int argc, char const *argv[])
     PQclear(res);
 
     PQfinish(conn);
-
+    #ifdef WIN32
     system("pause");
+    #endif
     return 0;
 }
