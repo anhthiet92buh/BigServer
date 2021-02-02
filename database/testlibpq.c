@@ -16,6 +16,10 @@ int main(int argc, char const *argv[])
     PGresult *res;
     int nFields;
     int i, j;
+    char a[100];
+
+    scanf("%s",a);
+    printf("%s\n",a);
 
     printf("Bat dau khai bao xong\n");
 
