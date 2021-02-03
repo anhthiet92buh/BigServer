@@ -59,7 +59,7 @@ void getOneChar(char *conninfo)
                 printf("%-15s", PQgetvalue(res, i, j));
             printf("\n");
         };
-        PQclear(res);
+        //PQclear(res);
     };
 
     PQfinish(conn);

@@ -3,8 +3,9 @@
 #include <string.h>
 #ifdef WIN32
 #include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
-#endif
+#else
 #include "/usr/include/postgresql/libpq-fe.h"
+#endif
 static void exit_nicely(PGconn *conn){
 
     PQfinish(conn);
