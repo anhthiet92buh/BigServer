@@ -41,6 +41,15 @@ typedef struct lenOfPointVN {
     vector<Oxyz> lensOxyz; 
 };
 
+typedef struct oxyz1c
+{
+    int64_t id_Logic;
+    char value;
+    int64_t x;
+    int64_t y;
+    int64_t z;
+};
+
 #ifdef __cplusplus
 }
 #endif

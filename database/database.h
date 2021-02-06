@@ -1,10 +1,10 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+// #ifdef __cplusplus
+// extern "C"
+// {
+// #endif
 
 #ifdef WIN32
 #include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
@@ -16,12 +16,14 @@ extern "C"
 #include <stdlib.h>
 #include <string.h>
 
+#include "../ThuVienVN/tuioxyz_struct.h"
+
 
 //---------------------------
-static char *conninfo ="host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=11520380 dbname=DB1kytu";
+static char *conninfo =(char*)"host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=11520380 dbname=DB1kytu";
 static PGconn *conn;
 static PGresult *res;
-
+static oxyz1c result;
 
 
 
@@ -34,12 +36,13 @@ static void exit_nicely(PGconn *conn){
     //exit(1);
 };
 
-void getOneChar(char *conninfo)
+oxyz1c *getOneChar(char *conninfo)
 {
     int nFields;
     int i, j;
 
     conn = PQconnectdb(conninfo);
+    res = PQexec(conn, "SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" = 5;");
 
     if (PQstatus(conn)!=CONNECTION_OK){
 
@@ -53,16 +56,28 @@ void getOneChar(char *conninfo)
             printf("%-15s", PQfname(res, i));
         printf("\n\n");
 
-        for (i = 0; i < PQntuples(res); i++)
-        {
-            for (j = 0; j < nFields; j++)
-                printf("%-15s", PQgetvalue(res, i, j));
-            printf("\n");
-        };
+        // for (i = 0; i < PQntuples(res); i++)
+        // {
+        //     for (j = 0; j < nFields; j++)
+        //         printf("%-15s", PQgetvalue(res, i, j));
+        //     printf("\n");
+        // };
+
+
+        result.id_Logic=(int64_t)PQgetvalue(res,0,0);
+        result.value = (char)PQgetvalue(res,0,1);
+        result.x = (int64_t)PQgetvalue(res,0,2);
+        result.y = (int64_t)PQgetvalue(res,0,3);
+        result.z = (int64_t)PQgetvalue(res,0,4);
+
+
+
+        return &result;
+
         //PQclear(res);
     };
 
-    PQfinish(conn);
+    //PQfinish(conn);
     //return res;
 }
 
@@ -72,9 +87,9 @@ void getOneChar(char *conninfo)
 
 
 
-#ifdef __cplusplus
-}
-#endif
+// #ifdef __cplusplus
+// }
+// #endif
 
 
 #endif
