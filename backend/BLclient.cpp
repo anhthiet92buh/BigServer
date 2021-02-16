@@ -37,7 +37,6 @@ int main(int argc, char const *argv[])
         // cout<<"Gia tri connect: "<<connect_sv<<endl;
         memset(query,0,sizeof(query));
         
-        
         fgets(query,50,stdin);
         // cin>>query;
         // cout<<query<<endl;
