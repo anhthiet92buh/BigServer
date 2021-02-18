@@ -11,6 +11,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <ctime>
+#include <wchar.h>
 
 using namespace std;
 
@@ -82,7 +83,7 @@ int main(int argc, char const *argv[])
         connfd = accept(listenfd, (struct sockaddr*)NULL, NULL); //Tao socket cho client
         // sends = (char*)"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" =";
         // sprintf(sends,"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" =");
-        sprintf(sends,"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where value ='");
+        sprintf(sends,"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" ='");
         printf("Sends: %s - voi do dai: %ld",sends,sizeof(sends));
         // std::cout<<"Vua khoi tao ket noi Client den Server "<<connfd<<endl;
         // ticks = time(NULL);
@@ -143,6 +144,8 @@ int main(int argc, char const *argv[])
                 printf("%-15s", PQgetvalue(res, i, j));
             printf("\n");
         };
+        char xchar = *PQgetvalue(res,0,1);
+        // printf("Gia tri lay dc tu res: %s",xchar);
         PQclear(res);
 
         sleep(1);
