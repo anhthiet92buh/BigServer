@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
         conninfo = argv[1];
     }else
     {
-        conninfo = "host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=11520380 dbname=DB1kytu";
+        conninfo = "host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=123 dbname=DB1kytu";
     };
 
     printf("Gan dia chi conninfo xong\n");
@@ -67,14 +67,14 @@ int main(int argc, char const *argv[])
     PQclear(res);
     printf("Bat dau connect xong \n");
 
-    res = PQexec(conn, "DECLARE myportal CURSOR FOR select * from pg_database");
-    if (PQresultStatus(res) != PGRES_COMMAND_OK)
-    {
-        fprintf(stderr, "DECLARE CURSOR failed: %s", PQerrorMessage(conn));
-        PQclear(res);
-        exit_nicely(conn);
-    };
-    PQclear(res);
+    // res = PQexec(conn, "DECLARE myportal CURSOR FOR select * from pg_database");
+    // if (PQresultStatus(res) != PGRES_COMMAND_OK)
+    // {
+    //     fprintf(stderr, "DECLARE CURSOR failed: %s", PQerrorMessage(conn));
+    //     PQclear(res);
+    //     exit_nicely(conn);
+    // };
+    // PQclear(res);
 
     //res = PQexec(conn, "FETCH ALL in myportal");
     //char t[50]="SELECT "idBigLogic", value, x, y, z FROM public.oxyz1c where "idBigLogic" = 5;";

@@ -8,6 +8,9 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, char const *argv[])
 {
@@ -31,17 +34,10 @@ int main(int argc, char const *argv[])
         read(sockfd, recv_buffer,sizeof(recv_buffer)-1);
         printf("\n%s\n",recv_buffer);  
         close(sockfd);
+    }else
+    {
+        cout<<"Deo co ket noi"<<endl;
     };
-    
-
-
-
-
-
-
-
-
-
 
 
     return 0;
