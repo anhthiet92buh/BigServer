@@ -12,8 +12,28 @@
 #include <unistd.h>
 #include <ctime>
 #include <wchar.h>
+//...........
+#define __STDC_FORMAT_MACROS 1
+#include <inttypes.h>
+
+// #include <stdio.h>
+#include <unicode/utypes.h>
+#include <unicode/uchar.h>
+#include <unicode/locid.h>
+#include <unicode/ustring.h>
+#include <unicode/ucnv.h>
+#include <unicode/unistr.h>
+#include <unicode/putil.h>
+//...........
+
 
 using namespace std;
+using namespace icu;
+
+
+#ifndef UPRV_LENGTHOF
+#define UPRV_LENGTHOF(array) (int32_t)(sizeof(array)/sizeof((array)[0]))
+#endif
 
 
 //..................
@@ -137,16 +157,31 @@ int main(int argc, char const *argv[])
         for (int i = 0; i < nFields; i++)
             printf("%-15s", PQfname(res, i));
         printf("\n\n");
-
+        printf("PQtuples = %d\n",PQntuples(res));
         for (int i = 0; i < PQntuples(res); i++)
         {
             for (int j = 0; j < nFields; j++)
                 printf("%-15s", PQgetvalue(res, i, j));
-            printf("\n");
+            printf("i = %d\n",i);
         };
-        char xchar = *PQgetvalue(res,0,1);
-        // printf("Gia tri lay dc tu res: %s",xchar);
+
+
+        printf("Kiem tra byte tren du lieu: \n");
+        char xchar[100];
+        UChar uchar_test[100];
+        // xchar = *PQgetvalue(res,0,1);
+        u_charsToUChars(PQgetvalue(res,0,1),uchar_test,sizeof(*PQgetvalue(res,0,1))); /* include the terminating NUL */
+        u_UCharsToChars(uchar_test,xchar,sizeof(uchar_test));
+        printf("Byte cua xchar: %s      -sizeof(xchar): ",xchar); std::cout<<sizeof(xchar)<<endl;
+        printf("Byte cua int PQgetvalue(res,0,1): "); std::cout<<sizeof(PQgetvalue(res,0,1))<<endl;
+
+        printf("in xchar: ");
+        // printf("%X\n",xchar);
         PQclear(res);
+
+
+
+
 
         sleep(1);
                 
