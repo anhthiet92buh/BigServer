@@ -250,14 +250,14 @@ int main(int argc, char const *argv[])
         for (int i = 0; i < nFields; i++)
             printf("%-15s", PQfname(res, i));
         printf("\n\n");
-        printf("PQtuples = %d\n",PQntuples(res));
+        printf("PQtuples = %d\n\n\n",PQntuples(res));
         for (int i = 0; i < PQntuples(res); i++)
         {
             for (int j = 0; j < nFields; j++)
-                printf("%-15s", PQgetvalue(res, i, j));
-            printf("i = %d\n",i);
+                printf("[%s](-- i=%d -- j=%d)\n", PQgetvalue(res, i, j),i,j);
+            printf("i = %d\n\n",i);
         };
-
+        printf("------{%s}------\n",PQgetvalue(res, 0, 1));
 
         // printf("Kiem tra byte tren du lieu: \n");
         wchar_t xchar[100];
@@ -265,18 +265,26 @@ int main(int argc, char const *argv[])
         // UChar uchar_test[100];
         std::mbtowc(xchar,PQgetvalue(res,0,1),1);
         std::wcout << L"In PQgetvalue(res,0,1) theo Wchar: "<<xchar<<endl;
+        // printf("xxxxxxxxx%-15s", PQgetvalue(res, 0, 1));
         // printf("Kiem dinh: %d\n",it);
         // u_charsToUChars(PQgetvalue(res,0,1),uchar_test,100); /* include the terminating NUL */
         // u_UCharsToChars(uchar_test,xchar,100);
         // printf("Byte cua xchar: %s      -sizeof(xchar): ",xchar);
         // std::cout<<sizeof(xchar)<<endl;
         // printf("Byte cua int PQgetvalue(res,0,1): "); std::cout<<sizeof(PQgetvalue(res,0,1))<<endl;
-        std::cout<<"Kiem tra *PQgetvalue: "<<endl;
+        // std::cout<<"Kiem tra *PQgetvalue: ";
         // printf("---------%s--------",(char16_t)*PQgetvalue(res,0,1));
-        std::cout<<*PQgetvalue(res,0,1)<<endl;
+        // std::cout<<*PQgetvalue(res,0,1)<<endl;
 
-        printf("in xchar: \n");
+        // printf("in xchar: \n");
         // printf("%X\n",xchar);
+        char t=PQgetvalue(res, 0, 1);
+        cout
+
+
+
+
+
         PQclear(res);
 
 
