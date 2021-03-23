@@ -1,4 +1,4 @@
-#include <iostream>
+// #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +10,7 @@
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <ctime>
+// #include <ctime>
 #include <wchar.h>
 //...........
 // #define __STDC_FORMAT_MACROS 1
@@ -24,11 +24,10 @@
 #include <unicode/ucnv.h>
 #include <unicode/unistr.h>
 #include <unicode/putil.h>
-// #include <libpq-int.h>
 //...........
 
 
-using namespace std;
+// using namespace std;
 
 #ifndef UPRV_LENGTHOF
 #define UPRV_LENGTHOF(array) (int32_t)(sizeof(array)/sizeof((array)[0]))
@@ -40,7 +39,6 @@ using namespace std;
 #include "C:\Program Files\PostgreSQL\13\include\libpq-fe.h"
 #else
 #include "/usr/include/postgresql/libpq-fe.h"
-// #include "/usr/include/postgresql/internal/libpq-int.h"
 #endif
 
 //---------------------------
@@ -135,68 +133,6 @@ static void demo_C_Unicode_strings() {
     }
 }
 
-//Function Print Binary variable
-void pBinary(char *xpB,int32_t y){
-    int32_t x;
-    // y=sizeof(xpB);
-    // y=50;
-    printf("\nGia tri sizeof cua bien can in Binary: %d -- %d\n",y,8*y);
-    printf("\n");
-    for (int32_t i = y*8-1; i >=0; i--)
-    {
-        x=*xpB>>i;
-        if (x&1)
-        {
-            printf("1");
-        }
-        else
-        {
-            printf("0");
-        };
-        if(!(i%8)) printf(" ");
-        
-    };
-    printf("\n");
-};
-
-void research(PGresult *res){
-    printf("\n\n");
-    int x,y;
-    printf("Gia tri tuples = So hang cua res: %d\n",x=PQntuples(res));//Bat dau tu 0
-    printf("Gia tri fields = So cot cua res: %d\n",y=PQnfields(res));//Bat dau tu 0
-    printf("Gia tri PQftable = OID cua bang tu res: %d\n",PQftable(res,2));//
-    printf("char *PQcmdStatus(PGresult *res): %s\n",PQcmdStatus(res));
-    // printf("Gia tri PQfformat: %d\n",PQfformat(res,0));//Bat dau tu 0
-    for ( int i = 0; i < y; i++)
-    {
-        printf("Gia tri PQfformat %d: %d\n",i,PQfformat(res,i));//Bat dau tu 0
-    };
-
-    for ( int i = 0; i < y; i++)
-    {
-        printf("Gia tri PQftype %d: %d\n",i,PQftype(res,i));//Bat dau tu 0
-    };
-
-    for (int i = 0; i < x; i++)
-    {
-        for (int z = 0; z < y; z++)
-        {
-            printf("Gia tri PQgetlength(%d,%d): %d\n",i,z,PQgetlength(res,i,z));//Bat dau tu 0
-            pBinary(PQgetvalue(res,i,z),PQgetlength(res,i,z));
-        };
-        
-    };
-
-    
-    
-    
-    // printf("Gia tri PQgetlength: %d\n",PQgetlength(res,0,0));//Bat dau tu 0
-    printf("\n\n");
-
-};
-
-
-
 //...................
 int main(int argc, char const *argv[])
 {
@@ -290,44 +226,19 @@ int main(int argc, char const *argv[])
         
         // res = PQexec(conn,(char*)&sends);
 
-        std::cout<<"\nGia tri send_buff tu client: "<<endl;
-        std::cout<<sizeof(send_buffer)<<endl;
+        // std::cout<<"\nGia tri send_buff tu client: "<<endl;
+        // std::cout<<sizeof(send_buffer)<<endl;
         // for (size_t i = 0; i < 100; i++)
         // {
         //     std::cout<<send_buffer[i]<<endl;
         // }
-        std::cout<<(char*)"So ky tu cua send_buffer: "<<count<<endl;
+        // std::cout<<(char*)"So ky tu cua send_buffer: "<<count<<endl;
         //sends->append(send_buffer).append(";");
         //std::cout<<*sends<<endl;
 
 
 
         res=PQexec(conn,send_saukhinoi);
-        std::cout<<"PQfsize(res,0): "<<PQfsize(res,0)<<endl;
-        std::cout<<"PQfsize(res,1): "<<PQfsize(res,1)<<endl;
-        std::cout<<"PQfsize(res,2): "<<PQfsize(res,2)<<endl;
-        std::cout<<"PQfsize(res,3): "<<PQfsize(res,3)<<endl;
-        std::cout<<"PQfsize(res,4): "<<PQfsize(res,4)<<endl;
-        std::cout<<"PQresultMemorySize(res): "<<PQresultMemorySize(res)<<endl;
-        std::cout<<"pg_char_to_encoding(PQgetvalue(res,0,2)): "<<pg_char_to_encoding(PQgetvalue(res,0,0))<<endl;
-        research(res);
-        printf("PQgetlength(res,0,0) = %d\n",PQgetlength(res,0,0));
-        printf("PQgetlength(res,0,1) = %d\n",PQgetlength(res,0,1));
-        printf("PQgetlength(res,0,2) = %d\n",PQgetlength(res,0,2));
-        printf("PQgetlength(res,0,3) = %d\n",PQgetlength(res,0,3));
-        printf("PQgetlength(res,0,4) = %d\n",PQgetlength(res,0,4));
-        // printf("PQgetlength(res,0,5) = %d\n",PQgetlength(res,0,5));
-        /*
-        // printf("PQgetlength(res,0,0) = %d\n",PQgetlength(res,1,0));
-        // printf("PQgetlength(res,0,1) = %d\n",PQgetlength(res,0,1));
-        // printf("PQgetlength(res,0,2) = %d\n",PQgetlength(res,0,2));
-        // printf("PQgetlength(res,0,3) = %d\n",PQgetlength(res,0,3));
-        // printf("PQgetlength(res,0,4) = %d\n",PQgetlength(res,0,4));
-        // printf("PQgetlength(res,0,5) = %d\n",PQgetlength(res,0,5));
-        // printf("*PQgetlength(res,0,1) = %d\n",*PQgetlength(res,0,0));
-        // std::cout<<*PQgetlength(res,0,0)<<endl;
-        // pBinary1(res);
-        */
         if (PQresultStatus(res) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "FETCH ALL failed: %s", PQerrorMessage(conn));
@@ -342,18 +253,15 @@ int main(int argc, char const *argv[])
         printf("PQtuples = %d\n\n\n",PQntuples(res));
         for (int i = 0; i < PQntuples(res); i++)
         {
-            for (int j = 0; j < nFields; j++){
+            for (int j = 0; j < nFields; j++)
                 printf("[%s](-- i=%d -- j=%d)\n", PQgetvalue(res, i, j),i,j);
-                // std::cout<<"PQgetLen(res,i,j): "<<PQgetLen(res,i,j)<<endl;
-            };
             printf("i = %d\n\n",i);
         };
-        printf("------{%s}------\n",PQgetvalue(res, 0, 3));
-        // printf("%lu\n",sizeof(char));
+        printf("------{%s}------\n",PQgetvalue(res, 0, 1));
 
         // printf("Kiem tra byte tren du lieu: \n");
-        // wchar_t xchar[100];
-        // int it;
+        wchar_t xchar[100];
+        int it;
         // UChar uchar_test[100];
         // std::mbtowc(xchar,PQgetvalue(res,0,1),1);
         // std::wcout << L"In PQgetvalue(res,0,1) theo Wchar: "<<xchar<<endl;
@@ -370,65 +278,28 @@ int main(int argc, char const *argv[])
 
         // printf("in xchar: \n");
         // printf("%X\n",xchar);
-        char t;
-        t=*PQgetvalue(res, 0, 1);
-        std::cout<<"size *PQvalue: "<<sizeof(*PQgetvalue(res, 0, 1))<<endl<<"size PQvalue: "<<sizeof(PQgetvalue(res, 0, 1))<<endl;
-        std::cout<<t<<" --- "<<sizeof(t)<<endl;
-        int iwhile=0;
-        printf("\n\n------------------------------------------------------\n");
-        // while (PQgetvalue(res, 0, 1)[iwhile]!=10)
-        // {
-        //     printf("%c",PQgetvalue(res, 0, 0));
-        //     iwhile++;
-        // };
-        int sizet=100;
-        printf("PQgetvalue(res, 0, 0): size: %lu\n", sizeof(PQgetvalue(res, 0, 0)));
-        for (iwhile = 0; iwhile < sizet; iwhile++)
-        {
-            printf("%c",PQgetvalue(res, 0, 0)[iwhile]);
-        };
-        pBinary(PQgetvalue(res, 0, 0),PQgetlength(res,0,0));
-        printf("\n");
-        printf("PQgetvalue(res, 0, 1): size: %lu\n", sizeof(PQgetvalue(res, 0, 1)));
-        for (iwhile = 0; iwhile < sizet; iwhile++)
-        {
-            printf("%c",PQgetvalue(res, 0, 1)[iwhile]);
-        };
-        pBinary(PQgetvalue(res, 0, 1),PQgetlength(res,0,1));
-        printf("\n");
-        printf("PQgetvalue(res, 0, 2): size: %lu\n", sizeof(PQgetvalue(res, 0, 2)));
-        for (iwhile = 0; iwhile < sizet; iwhile++)
-        {
-            printf("%c",PQgetvalue(res, 0, 2)[iwhile]);
-        };
-        pBinary(PQgetvalue(res, 0, 2),PQgetlength(res,0,2));
-        printf("\n");
-        printf("PQgetvalue(res, 0, 3): size: %lu\n", sizeof(PQgetvalue(res, 0, 3)));
-        for (iwhile = 0; iwhile < sizet; iwhile++)
-        {
-            printf("%c",PQgetvalue(res, 0, 3)[iwhile]);
-        };
-        pBinary(PQgetvalue(res, 0, 3),PQgetlength(res,0,3));
-        printf("\n");
-        printf("PQgetvalue(res, 0, 4): size: %lu\n", sizeof(PQgetvalue(res, 0, 4)));
-        for (iwhile = 0; iwhile < sizet; iwhile++)
-        {
-            printf("%c",PQgetvalue(res, 0, 4)[iwhile]);
-        };
-        pBinary(PQgetvalue(res, 0, 4),PQgetlength(res,0,4));
-        printf("\n\n------------------------------------------------------\n");
-        printf("%d\n\n",iwhile);
+        char *t=PQgetvalue(res, 0, 1);
+        printf("awdafdawd [%s = %ld] adsawd awd\n",t,sizeof(t));
+
+
+
+
 
         PQclear(res);
+
+
+
+
 
         sleep(1);
                 
         close(connfd);
         // demo_C_Unicode_strings();
-        printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+        
     };
     
     PQclear(res);
+
     // delete sends;
     // delete send_buffer;
     return 0;

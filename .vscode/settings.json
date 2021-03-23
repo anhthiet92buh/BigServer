@@ -1,8 +1,6 @@
 {
     "files.associations": {
-        "*.tcc": "cpp",
-        "ostream": "cpp",
-        "iostream": "cpp",
-        "bitset": "cpp"
+        "functional": "cpp",
+        "tuple": "cpp"
     }
 }
