@@ -12,6 +12,14 @@
 #include <unistd.h>
 #include <ctime>
 #include <wchar.h>
+#include <cwchar>
+#include <cuchar>
+// #include <charconv>
+#include <charconv>
+#include <string_view>
+#include <system_error>
+#include <locale>
+#include <fstream>
 //...........
 // #define __STDC_FORMAT_MACROS 1
 #include <inttypes.h>
@@ -45,7 +53,8 @@ using namespace std;
 
 //---------------------------
 // static char *conninfo =(char*)"host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=123 dbname=DB1kytu";
-const char *conninfo = "host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=123 dbname=DB1kytu";
+// const char *conninfo = "host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=123 dbname=DB1kytu";
+const char *conninfo = "host=postgres hostaddr=127.0.0.1 port=7532 user=postgres password=123 dbname=fulldatabase";
 static PGconn *conn;
 static PGresult *res;
 
@@ -200,6 +209,8 @@ void research(PGresult *res){
 //...................
 int main(int argc, char const *argv[])
 {
+    setlocale(LC_ALL,"en_US.utf8");
+
     int listenfd = -1, cout=0;
     int connfd = -1;
     struct sockaddr_in server_addr;
@@ -260,7 +271,8 @@ int main(int argc, char const *argv[])
         connfd = accept(listenfd, (struct sockaddr*)NULL, NULL); //Tao socket cho client
         // sends = (char*)"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" =";
         // sprintf(sends,"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" =");
-        sprintf(sends,"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" ='");
+        // sprintf(sends,"SELECT \"id_Logic\", value, x, y, z FROM public.oxyz1c where \"id_Logic\" ='");
+        sprintf(sends,"SELECT main_serial, x, y, z, t, one_serial, one_char FROM public.one_char where main_serial =");
         printf("Sends: %s - voi do dai: %ld",sends,sizeof(sends));
         // std::cout<<"Vua khoi tao ket noi Client den Server "<<connfd<<endl;
         // ticks = time(NULL);
@@ -277,7 +289,7 @@ int main(int argc, char const *argv[])
         strcat(send_saukhinoi,send_buffer);
 
 
-        strcat(send_saukhinoi,"';");
+        strcat(send_saukhinoi,";");
         printf("\nChuoi sau khi noi: %s\n",send_saukhinoi);
         // printf("In tung ky tu: ");
         // for (size_t i = 0; i < 700; i++)
@@ -303,6 +315,10 @@ int main(int argc, char const *argv[])
 
 
         res=PQexec(conn,send_saukhinoi);
+        // PQprint();
+        printf("Vua khoi tao res xong\n");
+        printf("PQgetisnull(res,0,0): %d\n",PQgetisnull(res,0,4));
+        printf("PQescapeString: %zu\n",PQescapeString(PQgetvalue(res,0,2),PQgetvalue(res,0,2),PQgetlength(res,0,2)));
         std::cout<<"PQfsize(res,0): "<<PQfsize(res,0)<<endl;
         std::cout<<"PQfsize(res,1): "<<PQfsize(res,1)<<endl;
         std::cout<<"PQfsize(res,2): "<<PQfsize(res,2)<<endl;
@@ -419,6 +435,56 @@ int main(int argc, char const *argv[])
         printf("\n\n------------------------------------------------------\n");
         printf("%d\n\n",iwhile);
 
+        wchar_t wcx=*PQgetvalue(res,0,1);
+        wcout<<L"in ky tu wchar: "<<wcx<<endl;
+
+       
+        int intchar;
+
+        // std::from_chars_result caocao = from_chars(PQgetvalue(res,0,1),PQgetvalue(res,0,1),intchar);
+        // if (caocao.ec==std::errc{})
+        // {
+        //     std::cout<<"chuyen doi ra int: "<<intchar<<endl;
+        // }else
+        // {
+        //     printf("Loi: %s\n",caocao.ec);
+        // };
+        
+        
+        // std::cout<<"In tu value: "<<intchar<<endl;
+        char *achar[100],abc;
+        achar[0]=PQgetvalue(res,0,1);
+        printf("achar: %s\n",achar[0]); 
+        printf("size achar: %lu\n",sizeof(achar));
+        printf("*achar: %s\n",*achar);
+        printf("size *achar: %lu\n",sizeof(*achar));
+        // printf("achar: %h\n",*achar);
+        std::cout<<"in achar theo cout: "<<achar<<endl;
+        // printf("in achar theo cout: %c\n",achar);
+
+        printf("in theo printf: %s\n",PQgetvalue(res,0,0));
+        printf("in theo printf: %s\n",PQgetvalue(res,0,1));
+
+        printf("in theo printf: %s\n",PQgetvalue(res,0,2));
+        printf("in theo printf: %s\n",PQgetvalue(res,0,3));
+        printf("in theo printf: %s\n",PQgetvalue(res,0,4));
+        // u_printf("in theo uprintf: %s\n",PQgetvalue(res,0,1));
+
+        std::cout<<"Test so sanh "<<endl;
+        wint_t twc=5000;
+        // abc=to_chars(5000);
+        // printf("In abc: %hhd\n",abc);
+        std::wcout<<L"in theo static_cast: "<<wchar_t(twc)<<"-- "<< sizeof(twc)<<endl;
+
+        std::cout<<"++++++++++++++++++++"<<endl;
+        char *naychar=PQgetvalue(res,0,6);
+        for (int i = 0; i < PQgetlength(res,0,6); i++)
+        {
+            printf(" %0.2x",naychar[i]);
+        };
+        printf("\n");
+        
+
         PQclear(res);
 
         sleep(1);
@@ -428,7 +494,7 @@ int main(int argc, char const *argv[])
         printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
     };
     
-    PQclear(res);
+    // PQclear(res);
     // delete sends;
     // delete send_buffer;
     return 0;
